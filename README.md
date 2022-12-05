@@ -5,7 +5,7 @@ This project focuses on controlling a robot remotely. A GUI is developed using H
 
 https://user-images.githubusercontent.com/67382565/205706977-3247769d-ffae-4ec0-a7e8-25202fe1506b.mp4
 
-## Project Implementation Steps Taken
+## Steps taken to implement project
 
 1. Create a class which controls the robot movements
 2. Create a class which reads the data of ultrasonic sensor
@@ -42,4 +42,6 @@ https://user-images.githubusercontent.com/67382565/205706977-3247769d-ffae-4ec0-
 |Motor Driver | LM1085|
 
 
+![IMG_20220522_172615](https://user-images.githubusercontent.com/67382565/205725548-d4a39d1b-7bde-4eed-89fe-93642a073fbf.jpg)
 
+![IMG_20220522_172535](https://user-images.githubusercontent.com/67382565/205725580-a668fdd5-60b6-420d-8e53-54d45c8dbdd6.jpg)
