@@ -29,7 +29,7 @@ https://user-images.githubusercontent.com/67382565/205706977-3247769d-ffae-4ec0-
 ## Dependencies
 * Node.js 18.12.1 LTS
 * Python 3.10.4
-* Node.js Packages: pigpio, File system, socket.io, Child process 
+* Node.js Packages: pigpio, File system, socket.io, child process 
 * Python packages: PiCamera
   
 ## Hardware used
@@ -41,8 +41,7 @@ https://user-images.githubusercontent.com/67382565/205706977-3247769d-ffae-4ec0-
 |Voltage Regulator | L78|
 |Motor Driver | LM1085|
 
+<img src="https://user-images.githubusercontent.com/67382565/205725548-d4a39d1b-7bde-4eed-89fe-93642a073fbf.jpg" width="500" height="250" />
+<img src="https://user-images.githubusercontent.com/67382565/205725902-9d5c12e7-4d52-4a96-b56e-17b78267b75c.jpg" width="500" height="400" />
 
-![IMG_20220522_172615](https://user-images.githubusercontent.com/67382565/205725548-d4a39d1b-7bde-4eed-89fe-93642a073fbf.jpg)
 
-
-![IMG_20220522_172535](https://user-images.githubusercontent.com/67382565/205725902-9d5c12e7-4d52-4a96-b56e-17b78267b75c.jpg)
