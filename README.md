@@ -1,7 +1,7 @@
 # website-controlled-robot
 
 ## General Description
-This project focuses on controlling a robot remotely. A GUI is developed using HTML, node.js and CSS to provide with buttons and a live video to be able to control the robot. The final outcome of the project looks as follows
+This project focuses on controlling a robot remotely. A GUI is developed using HTML, node.js and CSS to provide buttons and a live video to be able to control the robot. The final outcome of the project looks as follows
 
 https://user-images.githubusercontent.com/67382565/205706977-3247769d-ffae-4ec0-a7e8-25202fe1506b.mp4
 
@@ -17,13 +17,13 @@ https://user-images.githubusercontent.com/67382565/205706977-3247769d-ffae-4ec0-
 8. Display the distance and speed of the robot
 9. Display the video
 10. Code such that the user should be able to operate the robot using PC as well as mobile
-11. Implement function to avoid robot collision, incase the user does not release the 'forward' button when robot is about to crash.
+11. Implement function to avoid robot collision in case the user does not release the 'forward' button when robot is about to crash.
    
 ## Files
-* **RobotControl.js:-** Provides functions to controls robot movements, this file should be modified as per the hardware.
-* **sr04.js:-** provides a funtion to read the data from ultrasonic sensor sr04
+* **RobotControl.js:-** Provides functions to control robot movements, this file should be modified as per the hardware.
+* **sr04.js:-** provides a function to read the data from ultrasonic sensor sr04
 * **capture_image.py:-** captures images from camera and stores alternately as image1.jpg and image2.jpg
-* **/public/robot.html:-** This file contains the GUI and the funtionality to communicate with the server.
+* **/public/robot.html:-** This file contains the GUI and the functionality to communicate with the server.
 * **robot.js:-** This file contains the main program, it uses the above mentioned files to create a server, communicate with the client and move the robot.
 
 ## Dependencies
