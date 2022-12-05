@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+/* this front id the front face for the forward, reverse, left, right buttons */
+ .front {
+    display: block;
+	height:60px;
+	width:120px;
+    border-radius: 12px;
+    font-weight:bold;
+	font-size: 20px;
+    background-color:#deff0a;
+    transform: translateY(-6px);
+	text-align: center;  
+    line-height: 65px;   
+  }
+  .forward {
+    background-color:#abc404;
+    border-radius: 12px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+  /* the positions are fixed with respect to upperleft corner */
+  /* This will make it easy to use in mobile as well as pc */
+	position: fixed;
+	top: 280px;
+	left: 85px;
+	user-select: none;
+  }
+  /* for button pressed effect when pressed by user */
+  .forward:active .front {
+    transform: translateY(-2px);
+  }
+  
+  .left {
+    background-color:#abc404;
+    border-radius: 12px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+	position: fixed;
+	top: 350px;
+	left: 20px;
+	user-select: none;
+
+  }
+  .left:active .front {
+    transform: translateY(-2px);
+  }
+  .right {
+    background-color:#abc404;
+    border-radius: 12px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+	position: fixed;
+	top: 350px;
+	left: 150px;
+	user-select: none;
+
+  }
+  .right:active .front {
+    transform: translateY(-2px);
+  }
+  .reverse {
+    background-color:#abc404;
+    border-radius: 12px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+	position: fixed;
+	top: 420px;
+	left: 85px;
+	user-select: none;
+
+  }
+  .reverse:active .front {
+    transform: translateY(-2px);
+  }  
+  
+  /* this front is for plus and minus buttons */
+ .front1 {
+    display: block;
+	height:70px;
+	width: 70px;
+	border-color: #000000;
+    border-radius: 35px;
+    font-weight:bold;
+	font-size: 60px;
+    background-color:#00ffff;
+    transform: translateY(-6px);
+	text-align: center;  
+    line-height: 65px;   
+  }
+    .minus {
+    background-color:#02c9c9;
+    border-radius: 35px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+	position: fixed;
+	top: 350px;
+	left: 350px;
+	user-select: none;
+
+  }
+  .minus:active .front1 {
+    transform: translateY(-2px);
+  }  
+    .plus {
+    background-color:#02c9c9;
+    border-radius: 35px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+	position: fixed;
+	top: 350px;
+	left: 450px;
+	user-select: none;
+
+  }
+  .plus:active .front1 {
+    transform: translateY(-2px);
+  }  
+
+/* the image is flipped in x and y direction as the camera is mounter upside down  */
+#img{
+	-webkit-transform: scaleY(-1) scaleX(-1);
+	position: fixed;
+	top: 40px;
+	left: 20px;     
+	}
+
+/* This box will display the distance shown by ultrasonic sensor */
+#dist {
+  	display:inline-block;
+	background-color: lightgrey;
+	width: 160px;
+	border: 5px solid green;
+	padding: 10px;
+	border-radius:20px;
+	font-weight:bold;	
+	position: fixed;
+	top: 70px;
+	left: 350px;
+	user-select: none;
+}
+
+/* this box will display the speed of the robot in PWM */
+#speed1 {
+  	display:inline-block;
+	background-color: lightgrey;
+	width: 160px;
+	border: 5px solid green;
+	padding: 10px;
+	border-radius:20px;
+	font-weight:bold;	
+	position: fixed;
+	top: 140px;
+	left: 350px;
+	user-select: none;
+}
+
+</style>
+</head>
+<body>
+
+<h1 ></h1>
+<button id ="forward" class = "forward"> <span class="front">Forward</span> </button>
+<button id ="left" class = "left"> <span class="front">Left</span> </button>
+<button id ="right" class = "right"> <span class="front">Right</span> </button>
+<button id ="reverse" class = "reverse"> <span class="front">Reverse</span> </button>
+<button id ="minus" class = "minus"> <span class="front1">-</span> </button>
+<button id ="plus" class = "plus"> <span class="front1">+</span> </button>
+<img id="img" class="rotate180">
+<div id = "dist"> Distance =<a id = 'distance'></a> cm </div>
+<div id = "speed1">Speed = <a id = 'speed'></a> out of 255 </div>
+
+<!-- socket.io is already installed in robot, we are accesing it here -->
+<script src="socket.io/socket.io.js"></script><!-- include socket.io client side script -->
+<script>
+var socket = io(); //load socket.io-client and connect to the host that serves the page
+
+window.addEventListener("load", function(){ //when page loads
+  var forward = document.getElementById("forward");
+  var reverse = document.getElementById("reverse");
+  var left    = document.getElementById("left");
+  var right   = document.getElementById("right");  
+  
+// We add event listners to all the buttons
+// we use mouseup and mousedown to detect the events if the client is running on pc
+// We use touchstart and touchend to detect the events in mobile
+
+/* _____________________for mouse________________________*/
+ forward.addEventListener("mousedown", function() { 
+    socket.emit("forward", 1); 
+  }); 
+  
+forward.addEventListener("mouseup", function() { 
+    socket.emit("forward", 0); 
+  });
+reverse.addEventListener("mousedown", function() { 
+    socket.emit("reverse", 1); 
+  }); 
+  
+reverse.addEventListener("mouseup", function() { 
+    socket.emit("reverse", 0); 
+  });  
+left.addEventListener("mousedown", function() {
+    socket.emit("left", 1); 
+  }); 
+  
+left.addEventListener("mouseup", function() { 
+    socket.emit("left", 0); 
+  });
+right.addEventListener("mousedown", function() {
+    socket.emit("right", 1); 
+  }); 
+  
+right.addEventListener("mouseup", function() { 
+    socket.emit("right", 0); 
+});
+
+plus.addEventListener("mousedown", function() {
+    socket.emit("plus", 1); 
+  }); 
+  
+plus.addEventListener("mouseup", function() { 
+    socket.emit("plus", 0); 
+});
+
+minus.addEventListener("mousedown", function() {
+    socket.emit("minus", 1); 
+  }); 
+  
+minus.addEventListener("mouseup", function() { 
+    socket.emit("minus", 0); 
+});
+  
+
+
+/* _____________________for touch________________________*/
+
+ forward.addEventListener("touchstart", function() { 
+    socket.emit("forward", 1); 
+  }); 
+  
+forward.addEventListener("touchend", function() { 
+    socket.emit("forward", 0); 
+  });
+reverse.addEventListener("touchstart", function() { 
+    socket.emit("reverse", 1); 
+  }); 
+  
+reverse.addEventListener("touchend", function() { 
+    socket.emit("reverse", 0); 
+  });  
+left.addEventListener("touchstart", function() {
+    socket.emit("left", 1); 
+  }); 
+  
+left.addEventListener("touchend", function() { 
+    socket.emit("left", 0); 
+  });
+right.addEventListener("touchstart", function() {
+    socket.emit("right", 1); 
+  }); 
+  
+right.addEventListener("touchend", function() { 
+    socket.emit("right", 0); 
+  });
+plus.addEventListener("touchstart", function() {
+    socket.emit("plus", 1); 
+  }); 
+  
+plus.addEventListener("touchend", function() { 
+    socket.emit("plus", 0); 
+});
+
+minus.addEventListener("touchstart", function() {
+    socket.emit("minus", 1); 
+  }); 
+  
+minus.addEventListener("touchend", function() { 
+    socket.emit("minus", 0); 
+});
+    
+}); 
+
+// the distance data is recieved from server
+// The data is rounded to integer values and out of bounds data is represented by '_'
+socket.on('distance', function (data) { //get distance status from server
+	data = Math.round(data);
+	if (data > 250 || data < 0){ data = '_'}
+	document.getElementById("distance").innerHTML = data; //display distance
+	
+});
+
+socket.on('speed', function (data) { //get speed status from server
+  document.getElementById("speed").innerHTML = data; //display speed
+});
+
+socket.on('image', function (data) { //get image status from server
+  document.getElementById("img").src = data; //display image
+
+});
+</script>
+</body>
+</html>
