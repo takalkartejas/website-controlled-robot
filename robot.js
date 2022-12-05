@@ -7,7 +7,7 @@ var io = require('socket.io')(http) //import socket.io module and pass the http 
 var roco	= require('./robotControl.js')
 // We create an object of the class sr04, calling this will give the ultrasonic distance
 var sr04 = require('./sr04.js');
-const { StillCamera } = require('pi-camera-connect');
+//const { StillCamera } = require('pi-camera-connect');
 //const stillCamera = new StillCamera();
 //The defualt moving and turning speeds of robot are defined here
 // The moving speed can be changed by user using the '+' & '-' buttons

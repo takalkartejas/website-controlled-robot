@@ -5,16 +5,41 @@ This project focuses on controlling a robot remotely. A GUI is developed using H
 
 https://user-images.githubusercontent.com/67382565/205706977-3247769d-ffae-4ec0-a7e8-25202fe1506b.mp4
 
-The objectives of this project are:-
+## Project Implementation Steps Taken
 
-    1. Create a class which controls the robot movements
-    2. Create a class which reads the data of ultrasonic sensor
-    3. Create a class which captures images from camera
-    4. Create a server using node.js and client using HTML
-    5. Install socket.io and get the server and client connected
-    6. Add buttons to move and turn the robot.
-    7. Add buttons to increase and decrease the robot speed
-    8. Display the distance and speed of the robot
-    9. Display the video
-    10. Implement function to avoid robot collision, incase the user does not release the 'forward' button when robot is about to clash.
+1. Create a class which controls the robot movements
+2. Create a class which reads the data of ultrasonic sensor
+3. Create a class which captures images from camera
+4. Create a server using node.js and client using HTML
+5. Install socket.io and get the server and client connected
+6. Add buttons to move and turn the robot.
+7. Add buttons to increase and decrease the robot speed
+8. Display the distance and speed of the robot
+9. Display the video
+10. Code such that the user should be able to operate the robot using PC as well as mobile
+11. Implement function to avoid robot collision, incase the user does not release the 'forward' button when robot is about to crash.
    
+## Files
+* **RobotControl.js:-** Provides functions to controls robot movements, this file should be modified as per the hardware.
+* **sr04.js:-** provides a funtion to read the data from ultrasonic sensor sr04
+* **capture_image.py:-** captures images from camera and stores alternately as image1.jpg and image2.jpg
+* **/public/robot.html:-** This file contains the GUI and the funtionality to communicate with the server.
+* **robot.js:-** This file contains the main program, it uses the above mentioned files to create a server, communicate with the client and move the robot.
+
+## Dependencies
+* Node.js 18.12.1 LTS
+* Python 3.10.4
+* Node.js Packages: pigpio, File system, socket.io, Child process 
+* Python packages: PiCamera
+  
+## Hardware used
+
+| Hardware   | Model    |
+| --------  | ----------- |
+| Controller | Raspberry Pi 3B |
+| Camera    |  IMX219PQ |
+|Voltage Regulator | L78|
+|Motor Driver | LM1085|
+
+
+
