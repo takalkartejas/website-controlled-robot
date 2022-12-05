@@ -27,8 +27,8 @@ https://user-images.githubusercontent.com/67382565/205706977-3247769d-ffae-4ec0-
 * **robot.js:-** This file contains the main program, it uses the above mentioned files to create a server, communicate with the client and move the robot.
 
 ## Dependencies
-* Node.js 18.12.1 LTS
-* Python 3.10.4
+* Node.js 14.21.1
+* Python 3.8.10
 * Node.js Packages: pigpio, File system, socket.io, child process 
 * Python packages: PiCamera
   
